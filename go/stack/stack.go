@@ -42,37 +42,42 @@ package main
 
 import "fmt"
 
+// node represents an element in the stack.
 type node struct {
-	value int
-	next  *node
+	value int   // Stored value
+	next  *node // Pointer to the next node
 }
 
+// Stack represents a LIFO (Last In, First Out) stack.
 type Stack struct {
-	top *node
+	top *node // Pointer to the top of the stack
 }
 
+// Push adds a new element to the top of the stack.
 func (s *Stack) Push(value int) {
 	newNode := &node{value: value}
 	if s.top == nil {
 		s.top = newNode
 	} else {
-		newNode.next = s.top
-		s.top = newNode
+		newNode.next = s.top // Link the new node to the current top
+		s.top = newNode      // Update the top to the new node
 	}
 }
 
+// Pop removes and returns the top element of the stack.
 func (s *Stack) Pop() int {
 	if s.top == nil {
 		return -1
 	}
 
-	value := s.top.value
+	value := s.top.value // Store the value of the top element
 
-	s.top = s.top.next
+	s.top = s.top.next // Move the top pointer to the next element
 
 	return value
 }
 
+// Peek returns the first element of the stack without removing it.
 func (s *Stack) Peek() int {
 	if s.top == nil {
 		return -1
@@ -81,6 +86,7 @@ func (s *Stack) Peek() int {
 	return s.top.value
 }
 
+// IsEmpty checks if the stack is empty.
 func (s *Stack) IsEmpty() bool {
 	return s.top == nil
 }
