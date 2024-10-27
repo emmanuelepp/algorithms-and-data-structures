@@ -29,6 +29,11 @@ public:
         }
     }
 
+    bool isEmpty() const
+    {
+        return length == 0;
+    }
+
     void append(int value)
     {
         Node *newNode = new Node(value);
@@ -103,9 +108,18 @@ public:
         length--;
     }
 
-    bool isEmpty() const
+    Node *get(int index)
     {
-        return length == 0;
+        if (index < 0 || index >= length)
+            return nullptr;
+
+        Node *current = head;
+
+        for (int i = 0; i < index; ++i)
+        {
+            current = current->next;
+        }
+        return current;
     }
 };
 
