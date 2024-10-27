@@ -176,12 +176,35 @@ public:
         delete current;
         length--;
     }
-};
 
-int main()
-{
-    LinkedList *SLL = new LinkedList(5);
-    SLL->printList();
-    SLL->append(11);
-    SLL->printList();
-}
+    void reverse()
+    {
+        if (head == nullptr || head == tail)
+        {
+            return;
+        }
+
+        Node *current = head;
+        Node *previous = nullptr;
+        Node *next = nullptr;
+
+        tail = head;
+
+        while (current != nullptr)
+        {
+            next = current->next;
+            current->next = previous;
+            previous = current;
+            current = next;
+        }
+
+        head = previous;
+    };
+
+    int main()
+    {
+        LinkedList *SLL = new LinkedList(5);
+        SLL->printList();
+        SLL->append(11);
+        SLL->printList();
+    }
