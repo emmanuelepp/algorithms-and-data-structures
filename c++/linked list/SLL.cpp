@@ -159,6 +159,23 @@ public:
         length++;
         return true;
     }
+
+    void deleteNode(int index)
+    {
+        if (index < 0 || index > length)
+            return;
+        if (index == 0)
+            return deleteFirts();
+        if (index == length - 1)
+            return deleteLast();
+
+        Node *prev = get(index - 1);
+        Node *current = prev->next;
+
+        prev->next = current->next;
+        delete current;
+        length--;
+    }
 };
 
 int main()
