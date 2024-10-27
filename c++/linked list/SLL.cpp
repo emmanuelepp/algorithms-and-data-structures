@@ -21,12 +21,12 @@ public:
     void printList() const
     {
         Node *current = head;
-
         while (current != nullptr)
         {
-            std::cout << current->value << std::endl;
+            std::cout << current->value << " ";
             current = current->next;
         }
+        std::cout << std::endl;
     }
 
     bool isEmpty() const
@@ -52,7 +52,7 @@ public:
     void prepend(int value)
     {
         Node *newNode = new Node(value);
-        if (length == 0)
+        if (isEmpty())
         {
             head = tail = newNode;
         }
@@ -68,7 +68,6 @@ public:
     {
         if (length == 0)
             return;
-
         Node *current = head;
         if (length == 1)
         {
@@ -85,25 +84,23 @@ public:
             tail = current;
             tail->next = nullptr;
         }
-
         length--;
     }
 
-    void deleteFirts()
+    void deleteFirst()
     {
         if (length == 0)
             return;
-
         Node *current = head;
         if (length == 1)
         {
+            delete head;
             head = tail = nullptr;
         }
         else
         {
             head = head->next;
         }
-
         delete current;
         length--;
     }
@@ -112,9 +109,7 @@ public:
     {
         if (index < 0 || index >= length)
             return nullptr;
-
         Node *current = head;
-
         for (int i = 0; i < index; ++i)
         {
             current = current->next;
@@ -126,7 +121,6 @@ public:
     {
         if (index < 0 || index >= length)
             return false;
-
         Node *current = get(index);
         if (current)
         {
@@ -138,20 +132,18 @@ public:
 
     bool insert(int index, int value)
     {
-        if (index < 0 || index > length)
+        if (index < 0 || index >= length)
             return false;
         if (index == 0)
         {
             prepend(value);
             return true;
         }
-
         if (index == length)
         {
             append(value);
             return true;
         }
-
         Node *newNode = new Node(value);
         Node *current = get(index - 1);
         newNode->next = current->next;
@@ -162,16 +154,20 @@ public:
 
     void deleteNode(int index)
     {
-        if (index < 0 || index > length)
+        if (index < 0 || index >= length)
             return;
         if (index == 0)
-            return deleteFirts();
+        {
+            deleteFirst();
+            return;
+        }
         if (index == length - 1)
-            return deleteLast();
-
+        {
+            deleteLast();
+            return;
+        }
         Node *prev = get(index - 1);
         Node *current = prev->next;
-
         prev->next = current->next;
         delete current;
         length--;
@@ -180,16 +176,11 @@ public:
     void reverse()
     {
         if (head == nullptr || head == tail)
-        {
             return;
-        }
-
         Node *current = head;
         Node *previous = nullptr;
         Node *next = nullptr;
-
         tail = head;
-
         while (current != nullptr)
         {
             next = current->next;
@@ -197,15 +188,17 @@ public:
             previous = current;
             current = next;
         }
-
         head = previous;
-    };
-
-    int main()
-    {
-        LinkedList *SLL = new LinkedList(5);
-        SLL->printList();
-        SLL->append(11);
-        SLL->printList();
     }
 };
+
+int main()
+{
+    LinkedList SLL(5);
+    SLL.printList();
+    SLL.append(11);
+    SLL.printList();
+    SLL.reverse();
+    SLL.printList();
+    return 0;
+}
