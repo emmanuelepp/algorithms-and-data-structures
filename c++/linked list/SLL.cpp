@@ -121,6 +121,20 @@ public:
         }
         return current;
     }
+
+    bool set(int index, int value)
+    {
+        if (index < 0 || index >= length)
+            return false;
+
+        Node *current = get(index);
+        if (current)
+        {
+            current->value = value;
+            return true;
+        }
+        return false;
+    }
 };
 
 int main()
