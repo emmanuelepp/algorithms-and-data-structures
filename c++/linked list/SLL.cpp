@@ -59,7 +59,7 @@ public:
         length++;
     }
 
-    void deletelast()
+    void deleteLast()
     {
         if (length == 0)
             return;
@@ -81,6 +81,25 @@ public:
             tail->next = nullptr;
         }
 
+        length--;
+    }
+
+    void deleteFirts()
+    {
+        if (length == 0)
+            return;
+
+        Node *current = head;
+        if (length == 1)
+        {
+            head = tail = nullptr;
+        }
+        else
+        {
+            head = head->next;
+        }
+
+        delete current;
         length--;
     }
 
