@@ -180,7 +180,7 @@ public:
         Node *current = head;
         Node *previous = nullptr;
         Node *next = nullptr;
-        tail = head;
+
         while (current != nullptr)
         {
             next = current->next;
