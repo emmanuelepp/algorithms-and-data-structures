@@ -31,6 +31,17 @@ public:
         }
         return false;
     }
+
+    bool addEdge(std::string vertex1, std::string vertex2)
+    {
+        if (adjacencyList.count(vertex1) != 0 && adjacencyList.count(vertex2) != 0)
+        {
+            adjacencyList.at(vertex1).insert(vertex2);
+            adjacencyList.at(vertex2).insert(vertex1);
+            return true;
+        }
+        return false;
+    }
 };
 
 int main()
@@ -38,6 +49,9 @@ int main()
     Graph graph;
 
     graph.addVertex("A");
+    graph.addVertex("B");
+    graph.printGraph();
+    graph.addEdge("A", "B");
     graph.printGraph();
 
     return 0;
