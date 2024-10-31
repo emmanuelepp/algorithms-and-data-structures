@@ -21,7 +21,7 @@ public:
         Node *current = top;
         while (current)
         {
-            std::cout << current << std::endl;
+            std::cout << current->value << std::endl;
             current = current->next;
         }
     }
@@ -51,7 +51,7 @@ public:
     int getTop()
     {
         if (top == nullptr)
-            return;
+            return -1;
         return top->value;
     }
 
