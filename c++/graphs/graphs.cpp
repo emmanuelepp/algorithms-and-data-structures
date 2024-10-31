@@ -42,6 +42,29 @@ public:
         }
         return false;
     }
+
+    bool removeEdge(std::string vertex1, std::string vertex2)
+    {
+        if (adjacencyList.count(vertex1) != 0 && adjacencyList.count(vertex2) != 0)
+        {
+            adjacencyList.at(vertex1).erase(vertex2);
+            adjacencyList.at(vertex2).erase(vertex1);
+            return true;
+        }
+        return false;
+    }
+
+    bool removeVertex(std::string vertex)
+    {
+        if (adjacencyList.count(vertex) == 0)
+            return false;
+        for (auto otherVertex : adjacencyList.at(vertex))
+        {
+            adjacencyList.at(otherVertex).erase(vertex);
+        }
+        adjacencyList.erase(vertex);
+        return true;
+    }
 };
 
 int main()
@@ -50,8 +73,14 @@ int main()
 
     graph.addVertex("A");
     graph.addVertex("B");
-    graph.printGraph();
+    graph.addVertex("C");
+    graph.addVertex("D");
+
     graph.addEdge("A", "B");
+    graph.addEdge("A", "C");
+    graph.addEdge("A", "D");
+    graph.addEdge("B", "D");
+    graph.addEdge("C", "D");
     graph.printGraph();
 
     return 0;
