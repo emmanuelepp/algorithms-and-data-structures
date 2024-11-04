@@ -58,4 +58,28 @@ public:
             }
         }
     }
+
+    bool contains(int value)
+    {
+        if (root == nullptr)
+            return false;
+        Node *temp = root;
+
+        while (temp)
+        {
+            if (value < temp->value)
+            {
+                temp = temp->left;
+            }
+            else if (value > temp->value)
+            {
+                temp = temp->right;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 };
