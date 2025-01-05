@@ -20,8 +20,7 @@ public static void Main()
 {
     int[] numbers = { 42, 7, 19, 88, 4, 73, 25, 11, 39, 2 };
 
-    // Unordered Array
-    Console.WriteLine("Arreglo desordenado:");
+    Console.WriteLine("Unordered Array:");
     foreach (int number in numbers)
     {
         Console.Write(number + " ");
@@ -30,8 +29,7 @@ public static void Main()
 
     BubbleSort(numbers);
 
-    // Ordered Array
-    Console.WriteLine("Arreglo ordenado:");
+    Console.WriteLine("Ordered Array:");
     foreach (int number in numbers)
     {
         Console.Write(number + " ");
