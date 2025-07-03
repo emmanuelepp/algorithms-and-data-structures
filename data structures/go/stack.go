@@ -23,8 +23,12 @@ func (s *Stack) Pop() {
 
 }
 
-func (s *Stack) Peek() {
-	fmt.Printf("Stack")
+func (s *Stack) Peek() (int, bool) {
+	if s.top == nil {
+		return 0, false
+	}
+
+	return s.top.value, true
 }
 
 func (s *Stack) IsEmpty() bool {
