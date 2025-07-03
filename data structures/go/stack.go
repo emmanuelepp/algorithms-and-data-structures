@@ -19,7 +19,14 @@ func (s *Stack) Push(value int) {
 	s.top = node
 }
 
-func (s *Stack) Pop() {
+func (s *Stack) Pop() (int, bool) {
+	if s.top == nil {
+		return 0, false
+	}
+
+	val := s.top.value
+	s.top = s.top.next
+	return val, true
 
 }
 
@@ -62,6 +69,7 @@ func main() {
 
 	stack.Push(1)
 	stack.Push(2)
+	stack.Pop()
 	stack.Push(3)
 	stack.Push(4)
 
